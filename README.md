@@ -2,6 +2,11 @@
 
 Signal processing laboratory projects for the SSD (*Senyals i Sistemes Discrets*) subject in UAB, part of the second course of the Electronic Engineering degree (BSc).
 
+## 👨‍💻 Developers
+
+- Adrià Arús - @Addruss
+- Nedal Benelmekki - @nmb735
+
 ## 📋 Context and Introduction
 
 - All laboratory projects for the SSD subject, having obtained the maximum grade possible in every project.
