@@ -1,0 +1,126 @@
+%% PRACTICA 2 - Señales y sistemas discretos. Transformada
+%discreta de Fourier
+
+%% P1. Represente la parte real e imaginaria de una secuencia exponencial
+%compleja con amplitudes: creciente, decreciente y constante.
+
+% Creciente
+n=0:50; %variable independiente 51 muestras
+w=pi/10;r=1.1; %inicaliza parámetros exponencial
+C=1;z=r*exp(j*w); x=C*z.^n; %exponencial compleja
+%
+subplot(2,1,1); %Divide figura en 2 x 1, selecciona 1
+stem(n,real(x)); %Parte real en subplot 1
+xlabel('n');ylabel('real(x(n))'); %etiquetas gráfica
+%
+subplot(2,1,2); %Divide figura en 2 x 1, selecciona 2
+stem(n,imag(x)); %Parte imaginaria en subplot 2
+xlabel('n');ylabel('imag(x(n))'); %etiquetas gráfica
+
+% Constante
+n=0:50; %variable independiente 51 muestras
+w=pi/10;r=1; %inicaliza parámetros exponencial
+C=1;z=r*exp(j*w); x=C*z.^n; %exponencial compleja
+%
+subplot(2,1,1); %Divide figura en 2 x 1, selecciona 1
+stem(n,real(x)); %Parte real en subplot 1
+xlabel('n');ylabel('real(x(n))'); %etiquetas gráfica
+%
+subplot(2,1,2); %Divide figura en 2 x 1, selecciona 2
+stem(n,imag(x)); %Parte imaginaria en subplot 2
+xlabel('n');ylabel('imag(x(n))'); %etiquetas gráfica
+
+% Decreciente
+n=0:50; %variable independiente 51 muestras
+w=pi/10;r=0.9; %inicaliza parámetros exponencial
+C=1;z=r*exp(j*w); x=C*z.^n; %exponencial compleja
+%
+subplot(2,1,1); %Divide figura en 2 x 1, selecciona 1
+stem(n,real(x)); %Parte real en subplot 1
+xlabel('n');ylabel('real(x(n))'); %etiquetas gráfica
+%
+subplot(2,1,2); %Divide figura en 2 x 1, selecciona 2
+stem(n,imag(x)); %Parte imaginaria en subplot 2
+xlabel('n');ylabel('imag(x(n))'); %etiquetas gráfica
+
+%% P2. Represente 32 muestras de dos señales sinusoidales (x[n]=Asin(n)), una
+% que no sea periódica y otra que tenga un periodo de 16 muestras.
+
+% Variables globals
+A = 1;
+n = 0:31;
+
+% Señal no periodica
+f1 = pi;
+w1 = 2 * pi * f1;
+x1 = A * sin(w1 * n);
+
+stem(n,real(x1)); %Parte real en subplot 1
+xlabel('n');ylabel('real(x(n))'); %etiquetas gráfica
+
+% Señal periodica
+f2 = 1/16;
+w2 = 2 * pi * f2;
+x2 = A * sin(w2 * n);
+
+stem(n,real(x2)); %Parte real en subplot 1
+xlabel('n');ylabel('real(x(n))'); %etiquetas gráfica
+
+%% P3
+n = 0:126;
+x = cos(2*pi*3/10*n);
+% res = rep_tyf(x);
+
+%% P4
+% conv(x,y)
+h = [0.25, 0.25, 0.25,0.25];
+x = [1,2,3,4,3,2,1];
+lc = conv(x,h);
+
+%% P5
+% Las dos secuencias
+h = [0.25, 0.25, 0.25,0.25, 0, 0, 0, 0];
+x = [1,2,3,4,3,2,1,0];
+l = 8;
+
+% DFT de ambas
+H = fft(h)/l;
+X = fft(x)/l;
+
+% Mult
+Y = H.*X;
+y = ifft(Y);
+
+cc = cconv(x,h,l); % DUBTE
+
+%% P6
+
+% Las dos secuencias
+h = [0.25, 0.25, 0.25,0.25, 0, 0, 0, 0, 0, 0, 0, 0];
+x = [1,2,3,4,3,2,1,0, 0, 0, 0, 0];
+l = 12;
+
+% DFT de ambas
+H = fft(h)/l;
+X = fft(x)/l;
+
+% Mult
+Y = H.*X;
+y = ifft(Y);
+
+cc = cconv(x,h,l); % DUBTE
+
+%% P7
+
+recorder = audiorecorder(Fs,nBits,nChannels);
+
+record(recorder, 5);
+
+play(recorder);
+
+stop(recorder);
+
+
+
+
+

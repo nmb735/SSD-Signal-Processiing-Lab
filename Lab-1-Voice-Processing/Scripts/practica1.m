@@ -1,0 +1,84 @@
+%%Problema 1
+%Alternativa 1: Manual
+A = [1 1 1; 1 1 1; 1 1 1];
+
+%Alternativa 2: Funció
+A = ones(3);
+
+%%Problema 2
+%Alternativa 1: Utilitzar solve
+syms x y z
+solX = solve([x+2*y+3*z==2,y==-1, x+z==0], [x, y, z]).x;
+solY = solve([x+2*y+3*z==2,y==-1, x+z==0], [x, y, z]).y;
+solZ = solve([x+2*y+3*z==2,y==-1, x+z==0], [x, y, z]).z;
+ 
+%Alternativa 2: Operador MATLAB
+A = [1 2 3; 0 1 0; 1 0 1];
+b = [2 -1 0];
+A\b
+
+%%Problema 3
+phi=0:(2*pi)/100:2*pi
+length(phi)
+%La longitud ens dona 101 ja que també es conta el 0 inicial.
+
+    
+    
+%%Problema 4
+t1 = 0:1:10;
+t2 = 0:1/1000:10;
+s1 = sin(t1);
+s2 = sin(t2);
+stem(t1,s1)
+hold on
+plot(t2,s2)
+
+%%Problema 5
+%funcionmuysimple 1 y 2
+function [res1,res2]=funcionmuysimple(par1,par2)
+
+% [res1,res2]=funcionmuysimple(par1,par2)
+% Esta funcion asigna a res1 la suma de par1 y par2
+% y a res2 la resta
+
+res1=par1+par2;
+res2=par1-par2;
+
+function [res1,res2,res3]=funcionmuysimple2(par1,par2)
+
+% [res1,res2]=funcionmuysimple(par1,par2)
+% Esta funcion asigna a res1 la suma de par1 y par2
+% y a res2 la resta
+
+res1=par1+par2;
+res2=par1-par2;
+res3=par1.*par2;
+
+%%Problema 6
+clear
+load 'remoh1.mat'
+% S'insereixen 2 variables: fs y remoh1.
+
+fid = fopen('remoh2.bin','rb');
+remoh2 = fread(fid,18739,'float');
+fclose(fid);
+
+%%Problema 7
+%A
+remoh=zeros(length(remoh1)+length(remoh2),1);
+remoh(1:2:end) = remoh1;
+remoh(2:2:end) = remoh2;
+homer = flip(remoh);
+
+%B
+audiowrite('practica1.wav',homer,fs);
+
+
+
+%Problema 8
+%Escoltem la veu d'en Homer Simpson dir "In this house we obey the laws of
+%thermodynamics!".
+ t = 0:1/fs:(length(homer)-1)/fs;
+ plot(t,homer)
+ 
+
